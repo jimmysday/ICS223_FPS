@@ -12,7 +12,9 @@ public class spotlithmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        transform.position(ball.position.x,transform.position.y,ball.position.z);
+        if (ball != null)
+        {
+            transform.position = new Vector3(ball.transform.position.x, transform.position.y, ball.transform.position.z);
+        }
     }
 }
