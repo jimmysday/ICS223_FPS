@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class FPSInput : MonoBehaviour
+{
+    private float speed = 9.0f;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float horizinput = Input.GetAxis("Horizontal");
+        float vertinput = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(horizinput, 0, vertinput) * Time.deltaTime * speed;
+        transform.Translate(movement);
+    }
+}
