@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     float speed = 10 ;
     float horizInput = 0;
     float vertInput = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Update after the MonoBehaviour is created!
     void Start()
     {
         rb = GetComponent<Rigidbody>();
