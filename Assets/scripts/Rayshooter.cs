@@ -26,8 +26,18 @@ public class ray : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                // visually indicate where there was a hit
-                StartCoroutine(CreateTempSphereIndicator(hit.point));
+                GameObject hitObject = hit.transform.gameObject;
+                ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+                // is this object our Enemy?
+                if (target != null)
+                {
+                    target.ReactToHit();
+                }
+                else
+                {
+                    // visually indicate where there was a hit
+                    StartCoroutine(CreateTempSphereIndicator(hit.point));
+                }
             }
         }
     }
