@@ -7,6 +7,10 @@ public class WanderingAI : MonoBehaviour
     private float sphereRadius = 0.75f;
 
     private EnemyStates state;
+    [SerializeField] private GameObject laserbeamPrefab;
+    private GameObject laserbeam;
+    public float fireRate = 2.0f;
+    private float nextFire = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,7 +32,19 @@ public class WanderingAI : MonoBehaviour
             RaycastHit hit;
             if (Physics.SphereCast(ray, sphereRadius, out hit))
             {
-                if (hit.distance < obstacleRange)
+                GameObject hitObject = hit.transform.gameObject;
+                if (hitObject.GetComponent<PlayerCharacter>())
+                {
+                    // Spherecast hit Player, fire laser!
+                    if (laserbeam == null && Time.time > nextFire)
+                    {
+                        nextFire = Time.time + fireRate;
+                        laserbeam = Instantiate(laserbeamPrefab) as GameObject;
+                        laserbeam.transform.position = transform.TransformPoint(0, 1.5f, 1.5f);
+                        laserbeam.transform.rotation = transform.rotation;
+                    }
+                }
+                else if (hit.distance < obstacleRange)
                 {
                     float turnAngle = Random.Range(-110, 110);
                     transform.Rotate(Vector3.up * turnAngle);
@@ -36,6 +52,7 @@ public class WanderingAI : MonoBehaviour
             }
         }
     }
+
 
     public void ChangeState(EnemyStates state)
     {

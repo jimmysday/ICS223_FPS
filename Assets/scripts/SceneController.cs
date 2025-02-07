@@ -6,21 +6,48 @@ public class SceneController : MonoBehaviour
     private GameObject enemyPrefab;
     private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 1, 5);
+
+    private int enemyNumber = 5;
+    private GameObject[] enemies; // Array to hold enemy instances
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // Initialize the array with the number of enemies to spawn
+        enemies = new GameObject[enemyNumber];
+
+        // Loop through the array and instantiate enemies at the start
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            SpawnEnemy(i);
+        }
+    }
+
+    // Helper function to spawn an enemy
+    private void SpawnEnemy(int index)
+    {
+        enemies[index] = Instantiate(enemyPrefab) as GameObject;
+       // enemy.transform.position = spawnPoint;
+        float angle = Random.Range(0, 360); // Random rotation angle
+        enemies[index].transform.Rotate(0, angle, 0); // Apply rotation
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemy == null)
+        //if (enemy == null)
+        //{
+        //    enemy = Instantiate(enemyPrefab) as GameObject;
+        //    enemy.transform.position = spawnPoint;
+        //    float angle = Random.Range(0, 360);
+        //    enemy.transform.Rotate(0, angle, 0);
+        //}
+        // Loop through the array to check for null and respawn enemies
+        for (int i = 0; i < enemies.Length; i++)
         {
-            enemy = Instantiate(enemyPrefab) as GameObject;
-            enemy.transform.position = spawnPoint;
-            float angle = Random.Range(0, 360);
-            enemy.transform.Rotate(0, angle, 0);
+            if (enemies[i] == null) // If an enemy has been destroyed, respawn it
+            {
+                SpawnEnemy(i);
+            }
         }
     }
 }
