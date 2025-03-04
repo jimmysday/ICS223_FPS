@@ -29,7 +29,7 @@ public class ReactiveTarget : MonoBehaviour
     }
 
     private void DeadEvent()
-    {
+    {   
         Destroy(this.gameObject);
     }
 }

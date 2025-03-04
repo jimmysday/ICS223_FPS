@@ -4,11 +4,19 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
-    private GameObject enemy;
+    //private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 1, 5);
 
     private int enemyNumber = 5;
     private GameObject[] enemies; // Array to hold enemy instances
+
+    [SerializeField]
+    private GameObject iguanaPrefab;
+    private int iguanaNumber = 8;
+    private GameObject[] iguanas;
+    [SerializeField]
+    private Transform iguanaSpawnPoint;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +28,13 @@ public class SceneController : MonoBehaviour
         {
             SpawnEnemy(i);
         }
+
+        iguanas = new GameObject[iguanaNumber];
+
+        for (int i = 0; i < iguanaNumber; i++)
+        {
+            SpawnIguana(i);
+        }
     }
 
     // Helper function to spawn an enemy
@@ -29,6 +44,16 @@ public class SceneController : MonoBehaviour
        // enemy.transform.position = spawnPoint;
         float angle = Random.Range(0, 360); // Random rotation angle
         enemies[index].transform.Rotate(0, angle, 0); // Apply rotation
+    }
+
+    // Helper function to spawn an enemy
+    private void SpawnIguana(int index)
+    {
+        Debug.Log("iguana spawn");
+        iguanas[index] = Instantiate(iguanaPrefab) as GameObject;
+        iguanas[index].transform.position = iguanaSpawnPoint.position;
+        float angle = Random.Range(0, 360); // Random rotation angle
+        iguanas[index].transform.Rotate(0, angle, 0); // Apply rotation
     }
 
     // Update is called once per frame
