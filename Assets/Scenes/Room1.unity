@@ -11084,6 +11084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Iguana
       objectReference: {fileID: 0}
+    - target: {fileID: 141256, guid: b4806bcfd71324778b360c0299195b34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 476318, guid: b4806bcfd71324778b360c0299195b34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.68
@@ -11123,6 +11127,10 @@ PrefabInstance:
     - target: {fileID: 476318, guid: b4806bcfd71324778b360c0299195b34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9540064, guid: b4806bcfd71324778b360c0299195b34, type: 3}
+      propertyPath: m_StabilizeFeet
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
