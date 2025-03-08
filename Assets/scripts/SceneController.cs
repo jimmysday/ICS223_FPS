@@ -49,7 +49,6 @@ public class SceneController : MonoBehaviour
     // Helper function to spawn an enemy
     private void SpawnIguana(int index)
     {
-        Debug.Log("iguana spawn");
         iguanas[index] = Instantiate(iguanaPrefab) as GameObject;
         iguanas[index].transform.position = iguanaSpawnPoint.position;
         float angle = Random.Range(0, 360); // Random rotation angle
