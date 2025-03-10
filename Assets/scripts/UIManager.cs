@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 public class UIManager : MonoBehaviour
 {
-    private int score = 0;
+    //private int score = 0;
     [SerializeField] private TextMeshProUGUI textscore;
     [SerializeField] private Image healthBar;
     [SerializeField] private Image crossHair;
@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     {
         healthBar.fillAmount = 1;
         healthBar.color = Color.green;
-        UpdateScore(score);
+     //   UpdateScore(score);
         SetGameActive(true);
         Debug.Log("start:");
         Debug.Log(optionsPopup.IsActive());

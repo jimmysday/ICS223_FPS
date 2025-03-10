@@ -10,6 +10,7 @@ public class ReactiveTarget : MonoBehaviour
         if (enemyAI != null)
         {
             enemyAI.ChangeState(EnemyStates.dead);
+            Messenger.Broadcast(GameEvent.ENEMY_DEAD);
         }
         //StartCoroutine(Die());
 

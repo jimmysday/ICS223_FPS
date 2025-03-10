@@ -2,26 +2,45 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject enemyPrefab;
+    [SerializeField] private GameObject enemyPrefab;
     //private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 1, 5);
 
     private int enemyNumber = 5;
     private GameObject[] enemies; // Array to hold enemy instances
 
-    [SerializeField]
-    private GameObject iguanaPrefab;
+    [SerializeField] private GameObject iguanaPrefab;
     private int iguanaNumber = 8;
     private GameObject[] iguanas;
-    [SerializeField]
-    private Transform iguanaSpawnPoint;
+
+    [SerializeField] private Transform iguanaSpawnPoint;
+
+    [SerializeField] private UIManager ui;
+
+    private int score = 0;
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+    }
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+    }
+
+    private void OnEnemyDead()
+    {
+        score++;
+        ui.UpdateScore(score);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Initialize the array with the number of enemies to spawn
         enemies = new GameObject[enemyNumber];
+
+        ui.UpdateScore(score);
+        // other initializations that already exist
 
         // Loop through the array and instantiate enemies at the start
         for (int i = 0; i < enemyNumber; i++)
