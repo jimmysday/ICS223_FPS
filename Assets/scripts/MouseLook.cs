@@ -52,4 +52,25 @@ public class Mouselook : MonoBehaviour
             transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
         }
     }
+
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.GAME_ACTIVE,OnGameActive);
+        Messenger.AddListener(GameEvent.GAME_INACTIVE, OnGameInActive);
+    }
+
+    private void DeDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.GAME_INACTIVE, OnGameActive);
+        Messenger.RemoveListener(GameEvent.GAME_INACTIVE, OnGameInActive);
+    }
+
+    private void OnGameActive()
+    {
+        this.enabled = true;
+    }
+    private void OnGameInActive()
+    {
+        this.enabled = false;
+    }
 }

@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
             SetGameActive(false);
         }
         popupsActive++;
+        Debug.Log("open" + popupsActive);
     }
 
     public void OnPopupClosed()
@@ -58,6 +59,7 @@ public class UIManager : MonoBehaviour
         {
             SetGameActive(true);
         }
+        Debug.Log("close" + popupsActive);
     }
 
     // update score display
@@ -101,8 +103,10 @@ public class UIManager : MonoBehaviour
 
     public void SetGameActive(bool active)
     {
+        Debug.Log("SetGameActive" + active);
         if (active)
         {
+            Messenger.Broadcast(GameEvent.GAME_ACTIVE);
             Time.timeScale = 1; // unpause the game
             Cursor.lockState = CursorLockMode.Locked; // lock cursor at center
             Cursor.visible = false; // hide cursor
@@ -110,6 +114,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            Messenger.Broadcast(GameEvent.GAME_INACTIVE);
             Time.timeScale = 0; // pause the game
             Cursor.lockState = CursorLockMode.None; // let cursor move freely
             Cursor.visible = true; // show the cursor
