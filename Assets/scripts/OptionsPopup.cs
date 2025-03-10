@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class OptionsPopup : BasePopup
 {
-    [SerializeField] UIManager manager;
+   // [SerializeField] UIManager manager;
     [SerializeField] SettingPopup settingpopup;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +32,6 @@ public class OptionsPopup : BasePopup
     {
         Debug.Log("return to game");
         Close();
-        manager.SetGameActive(true);
+       // manager.SetGameActive(true);
     }
 }

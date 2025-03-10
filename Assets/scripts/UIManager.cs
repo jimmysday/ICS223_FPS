@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && popupsActive == 0)
         {
-            SetGameActive(false);
+//            SetGameActive(false);
             optionsPopup.Open();
         }
     }
@@ -44,12 +44,20 @@ public class UIManager : MonoBehaviour
 
     public void OnPopupOpened()
     {
+        if (popupsActive == 0)
+        {
+            SetGameActive(false);
+        }
         popupsActive++;
     }
 
     public void OnPopupClosed()
     {
         popupsActive--;
+        if(popupsActive == 0)
+        {
+            SetGameActive(true);
+        }
     }
 
     // update score display
