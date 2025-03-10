@@ -72,8 +72,8 @@ public class WanderingAI : MonoBehaviour
     }
 
     public void SetDifficulty(int difficulty) {
-        Debug.Log("WanderingAI.SetDifficulty(" + difficulty + ")");
+    //    Debug.Log("WanderingAI.SetDifficulty(" + difficulty + ")");
         enemySpeed = baseSpeed + (difficulty * difficultySpeedDelta);
-        Debug.Log("WanderingAI Speed(" + enemySpeed + ")");
+    //    Debug.Log("WanderingAI Speed(" + enemySpeed + ")");
     }
 }

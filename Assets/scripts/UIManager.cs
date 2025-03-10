@@ -9,32 +9,86 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image crossHair;
     [SerializeField] private OptionsPopup optionsPopup;
     [SerializeField] private SettingPopup settingPopup;
+
+    private int popupsActive = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        healthBar.fillAmount = 1;
-        healthBar.color = Color.green;
-     //   UpdateScore(score);
+        UpdateHealth(1);
         SetGameActive(true);
-        Debug.Log("start:");
-        Debug.Log(optionsPopup.IsActive());
-        Debug.Log(settingPopup.IsActive());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !optionsPopup.IsActive() && !settingPopup.IsActive())
+        if (Input.GetKeyDown(KeyCode.Escape) && popupsActive == 0)
         {
             SetGameActive(false);
             optionsPopup.Open();
         }
     }
 
+    private void Awake()
+    {
+        Messenger<float>.AddListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger.AddListener(GameEvent.POPUP_OPENED, OnPopupOpened);
+        Messenger.AddListener(GameEvent.POPUP_CLOSED, OnPopupClosed);
+    }
+    private void OnDestroy()
+    {
+        Messenger<float>.RemoveListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger.RemoveListener(GameEvent.POPUP_OPENED, OnPopupOpened);
+        Messenger.RemoveListener(GameEvent.POPUP_CLOSED, OnPopupClosed);
+    }
+
+    public void OnPopupOpened()
+    {
+        popupsActive++;
+    }
+
+    public void OnPopupClosed()
+    {
+        popupsActive--;
+    }
+
     // update score display
     public void UpdateScore(int newScore)
     {
         textscore.text = "Score: " +newScore.ToString();
+    }
+
+    private void OnHealthChanged(float healthPersentage)
+    {
+        UpdateHealth(healthPersentage);
+    }
+
+    // update score display
+    public void UpdateHealth(float healthPercentage)
+    {
+        healthBar.fillAmount = healthPercentage;
+
+        // Interpolate the color from green to red based on health percentage
+        Color startColor = Color.green;
+        Color endColor = Color.red;
+
+        //// If health is above 50%, transition from green to yellow
+        //if (healthPercentage > 0.5f)
+        //{
+        //    startColor = Color.green;
+        //    endColor = Color.yellow;
+        //    // Interpolate between green and yellow
+        //    healthBar.color = Color.Lerp(startColor, endColor, (healthPercentage - 0.5f) * 2); // Scale for 0.5 to 1 range
+        //}
+        //else
+        //{
+        //    startColor = Color.yellow;
+        //    endColor = Color.red;
+        //    // Interpolate between yellow and red
+        //    healthBar.color = Color.Lerp(startColor, endColor, (healthPercentage) * 2); // Scale for 0 to 0.5 range
+        //}
+
+        healthBar.color = Color.Lerp(startColor, endColor, 1 - healthPercentage);
     }
 
     public void SetGameActive(bool active)

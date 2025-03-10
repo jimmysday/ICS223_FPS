@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     private int health;
+    private int maxHealth = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = 5;
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -18,7 +19,9 @@ public class PlayerCharacter : MonoBehaviour
     public void Hit()
     {
         health -= 1;
-        Debug.Log("Health: ");
+        float percentage = (float) health / maxHealth;
+        Debug.Log("Health: " + percentage);
+        Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, percentage);
         if (health == 0)
         {
             Debug.Break();

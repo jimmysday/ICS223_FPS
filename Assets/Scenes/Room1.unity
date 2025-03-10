@@ -12906,6 +12906,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6961102181722825136, guid: cc3b4d9d32b952142a3dabb829308772, type: 3}
   iguanaPrefab: {fileID: 141256, guid: b4806bcfd71324778b360c0299195b34, type: 3}
   iguanaSpawnPoint: {fileID: 1120648103}
+  ui: {fileID: 672045050}
 --- !u!4 &1688632084
 Transform:
   m_ObjectHideFlags: 0
