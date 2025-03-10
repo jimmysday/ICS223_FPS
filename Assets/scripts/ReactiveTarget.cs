@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
-
+    private bool isAlive = true;
     public void ReactToHit()
     {
         WanderingAI enemyAI = GetComponent<WanderingAI>();
-        if (enemyAI != null)
+        if (enemyAI != null && isAlive)
         {
             enemyAI.ChangeState(EnemyStates.dead);
+            isAlive = false;
             Messenger.Broadcast(GameEvent.ENEMY_DEAD);
         }
         //StartCoroutine(Die());

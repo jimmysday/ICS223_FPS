@@ -21,16 +21,28 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         Messenger.AddListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger<int>.AddListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
     }
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger<int>.RemoveListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
     }
 
     private void OnEnemyDead()
     {
         score++;
         ui.UpdateScore(score);
+    }
+
+    private void OnDifficultyChanged(int newDifficulty) {
+
+        Debug.Log("Scene.OnDifficultyChanged(" + newDifficulty + ")");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
+            ai.SetDifficulty(newDifficulty);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,6 +86,11 @@ public class SceneController : MonoBehaviour
         iguanas[index].transform.Rotate(0, angle, 0); // Apply rotation
     }
 
+    public int GetDifficulty()
+    {
+        return PlayerPrefs.GetInt("difficulty", 1);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -85,11 +102,19 @@ public class SceneController : MonoBehaviour
         //    enemy.transform.Rotate(0, angle, 0);
         //}
         // Loop through the array to check for null and respawn enemies
+        
         for (int i = 0; i < enemies.Length; i++)
         {
             if (enemies[i] == null) // If an enemy has been destroyed, respawn it
             {
                 SpawnEnemy(i);
+            }
+
+            if (enemies[i])
+            {
+                int difficulty = GetDifficulty();
+                WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
+                ai.SetDifficulty(difficulty);
             }
         }
     }

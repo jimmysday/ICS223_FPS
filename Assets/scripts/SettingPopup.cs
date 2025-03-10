@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingPopup : MonoBehaviour
+public class SettingPopup : BasePopup
 {
     [SerializeField] UIManager manager;
     [SerializeField] OptionsPopup popup;
@@ -21,8 +21,7 @@ public class SettingPopup : MonoBehaviour
     }
     public void UpdateDifficulty(float difficulty)
     {
-       
-        difficultyLabel.text = "Difficulty: " +((int)difficulty).ToString();
+         difficultyLabel.text = "Difficulty: " +((int)difficulty).ToString();
         Debug.Log(difficultyLabel.text);
     }
     public void OnDifficultyValueChanged(float difficulty)
@@ -33,6 +32,7 @@ public class SettingPopup : MonoBehaviour
     public void OnOKButton()
     {
         PlayerPrefs.SetInt("difficulty", (int)difficultySlider.value);
+        Messenger<int>.Broadcast(GameEvent.DIFFICULTY_CHANGED, (int)difficultySlider.value);
         Close();
         popup.Open();
     }
@@ -41,18 +41,12 @@ public class SettingPopup : MonoBehaviour
         Close();
         popup.Open();
     }
-    public void Open()
+    override public void Open()
     {
         difficultySlider.value = PlayerPrefs.GetInt("difficulty", 1);
         UpdateDifficulty(difficultySlider.value);
         gameObject.SetActive(true);
+        base.Open();
     }
-    public void Close()
-    {
-        gameObject.SetActive(false);
-    }
-    public bool IsActive()
-    {
-        return gameObject.activeSelf;
-    }
+
 }
