@@ -2,7 +2,7 @@ using OpenCover.Framework.Model;
 using System.Collections;
 using UnityEngine;
 
-public class ray : MonoBehaviour
+public class ray : ActiveDuringGameplay
 {
     Camera cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

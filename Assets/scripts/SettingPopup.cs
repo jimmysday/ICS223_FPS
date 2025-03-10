@@ -21,8 +21,8 @@ public class SettingPopup : BasePopup
     }
     public void UpdateDifficulty(float difficulty)
     {
-         difficultyLabel.text = "Difficulty: " +((int)difficulty).ToString();
-        Debug.Log(difficultyLabel.text);
+        difficultyLabel.text = "Difficulty: " +((int)difficulty).ToString();
+        //Debug.Log(difficultyLabel.text);
     }
     public void OnDifficultyValueChanged(float difficulty)
     {
@@ -45,7 +45,8 @@ public class SettingPopup : BasePopup
     {
         difficultySlider.value = PlayerPrefs.GetInt("difficulty", 1);
         UpdateDifficulty(difficultySlider.value);
-        gameObject.SetActive(true);
+//        gameObject.SetActive(true);
+        Debug.Log("setting open");
         base.Open();
     }
 

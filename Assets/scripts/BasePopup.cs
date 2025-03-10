@@ -4,8 +4,10 @@ public class BasePopup : MonoBehaviour
 {
     virtual public void Open()
     {
+       
         if (!IsActive())
         {
+            Debug.Log("base open :" + this.GetType().Name + " (" + this.gameObject.name + ")");
             this.gameObject.SetActive(true);
             Messenger.Broadcast(GameEvent.POPUP_OPENED);
         }

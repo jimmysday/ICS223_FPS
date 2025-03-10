@@ -19,9 +19,8 @@ public class OptionsPopup : BasePopup
 
     public void OnSettingsButton()
     {
-        Debug.Log("settings clicked");
-        settingpopup.Open();
-        Close();
+       Close();
+       settingpopup.Open();
     }
     public void OnExitGameButton()
     {
@@ -30,8 +29,8 @@ public class OptionsPopup : BasePopup
     }
     public void OnReturnToGameButton()
     {
-        Debug.Log("return to game");
+        //Debug.Log("return to game");
         Close();
-       // manager.SetGameActive(true);
+
     }
 }
