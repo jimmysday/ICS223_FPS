@@ -49,24 +49,24 @@ public class SceneController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Initialize the array with the number of enemies to spawn
-        enemies = new GameObject[enemyNumber];
+        //// Initialize the array with the number of enemies to spawn
+        //enemies = new GameObject[enemyNumber];
 
-        ui.UpdateScore(score);
-        // other initializations that already exist
+        //ui.UpdateScore(score);
+        //// other initializations that already exist
 
-        // Loop through the array and instantiate enemies at the start
-        for (int i = 0; i < enemyNumber; i++)
-        {
-            SpawnEnemy(i);
-        }
+        //// Loop through the array and instantiate enemies at the start
+        //for (int i = 0; i < enemyNumber; i++)
+        //{
+        //    SpawnEnemy(i);
+        //}
 
-        iguanas = new GameObject[iguanaNumber];
+        //iguanas = new GameObject[iguanaNumber];
 
-        for (int i = 0; i < iguanaNumber; i++)
-        {
-            SpawnIguana(i);
-        }
+        //for (int i = 0; i < iguanaNumber; i++)
+        //{
+        //    SpawnIguana(i);
+        //}
     }
 
     // Helper function to spawn an enemy
