@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FPSInput : MonoBehaviour
@@ -5,6 +6,7 @@ public class FPSInput : MonoBehaviour
     private float speed = 9.0f;
     private CharacterController charController;
     private float gravity = -9.8f;
+    private float pushForce = 5.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,4 +36,15 @@ public class FPSInput : MonoBehaviour
 
         //transform.Translate(movement);
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        // does it have a rigidbody and is Physics enabled?
+        if (body != null && !body.isKinematic)
+        {
+            body.linearVelocity = hit.moveDirection * pushForce;
+        }
+    }
+
 }

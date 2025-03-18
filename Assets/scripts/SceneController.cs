@@ -95,28 +95,19 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (enemy == null)
+        //for (int i = 0; i < enemies.Length; i++)
         //{
-        //    enemy = Instantiate(enemyPrefab) as GameObject;
-        //    enemy.transform.position = spawnPoint;
-        //    float angle = Random.Range(0, 360);
-        //    enemy.transform.Rotate(0, angle, 0);
-        //}
-        // Loop through the array to check for null and respawn enemies
-        
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i] == null) // If an enemy has been destroyed, respawn it
-            {
-                SpawnEnemy(i);
-            }
+        //    if (enemies[i] == null) // If an enemy has been destroyed, respawn it
+        //    {
+        //        SpawnEnemy(i);
+        //    }
 
-            if (enemies[i])
-            {
-                int difficulty = GetDifficulty();
-                WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
-                ai.SetDifficulty(difficulty);
-            }
-        }
+        //    if (enemies[i])
+        //    {
+        //        int difficulty = GetDifficulty();
+        //        WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
+        //        ai.SetDifficulty(difficulty);
+        //    }
+        //}
     }
 }
