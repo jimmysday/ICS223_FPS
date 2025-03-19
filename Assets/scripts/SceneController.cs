@@ -49,24 +49,24 @@ public class SceneController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //// Initialize the array with the number of enemies to spawn
-        //enemies = new GameObject[enemyNumber];
+        // Initialize the array with the number of enemies to spawn
+        enemies = new GameObject[enemyNumber];
 
-        //ui.UpdateScore(score);
-        //// other initializations that already exist
+        ui.UpdateScore(score);
+        // other initializations that already exist
 
-        //// Loop through the array and instantiate enemies at the start
-        //for (int i = 0; i < enemyNumber; i++)
-        //{
-        //    SpawnEnemy(i);
-        //}
+        // Loop through the array and instantiate enemies at the start
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            SpawnEnemy(i);
+        }
 
-        //iguanas = new GameObject[iguanaNumber];
+        iguanas = new GameObject[iguanaNumber];
 
-        //for (int i = 0; i < iguanaNumber; i++)
-        //{
-        //    SpawnIguana(i);
-        //}
+        for (int i = 0; i < iguanaNumber; i++)
+        {
+            SpawnIguana(i);
+        }
     }
 
     // Helper function to spawn an enemy
@@ -95,19 +95,19 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //for (int i = 0; i < enemies.Length; i++)
-        //{
-        //    if (enemies[i] == null) // If an enemy has been destroyed, respawn it
-        //    {
-        //        SpawnEnemy(i);
-        //    }
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] == null) // If an enemy has been destroyed, respawn it
+            {
+                SpawnEnemy(i);
+            }
 
-        //    if (enemies[i])
-        //    {
-        //        int difficulty = GetDifficulty();
-        //        WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
-        //        ai.SetDifficulty(difficulty);
-        //    }
-        //}
+            if (enemies[i])
+            {
+                int difficulty = GetDifficulty();
+                WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
+                ai.SetDifficulty(difficulty);
+            }
+        }
     }
 }

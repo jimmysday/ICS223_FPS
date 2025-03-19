@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     private int health;
-    private int maxHealth = 10;
+    private int maxHealth = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,5 +26,24 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Break();
         }
+    }
+
+    private void Awake()
+    {
+        Messenger<int>.AddListener(GameEvent.PICKUP_HEALTH, this.OnPickupHealth);
+    }
+    private void OnDestroy()
+    {
+        Messenger<int>.RemoveListener(GameEvent.PICKUP_HEALTH, this.OnPickupHealth);
+    }
+    public void OnPickupHealth(int healthAdded)
+    {
+        health += healthAdded;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        float healthPercent = ((float)health) / maxHealth;
+        Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, healthPercent);
     }
 }
