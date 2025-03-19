@@ -84,27 +84,27 @@ public class UIManager : MonoBehaviour
     {
         healthBar.fillAmount = healthPercentage;
 
-        // Interpolate the color from green to red based on health percentage
-        Color startColor = Color.green;
-        Color endColor = Color.red;
+        // Define start and end colors for interpolation
+        Color startColor;
+        Color endColor;
+        float t;
 
-        //// If health is above 50%, transition from green to yellow
-        //if (healthPercentage > 0.5f)
-        //{
-        //    startColor = Color.green;
-        //    endColor = Color.yellow;
-        //    // Interpolate between green and yellow
-        //    healthBar.color = Color.Lerp(startColor, endColor, (healthPercentage - 0.5f) * 2); // Scale for 0.5 to 1 range
-        //}
-        //else
-        //{
-        //    startColor = Color.yellow;
-        //    endColor = Color.red;
-        //    // Interpolate between yellow and red
-        //    healthBar.color = Color.Lerp(startColor, endColor, (healthPercentage) * 2); // Scale for 0 to 0.5 range
-        //}
+        // If health is above 50%, transition from green to yellow
+        if (healthPercentage > 0.5f)
+        {
+            startColor = Color.yellow;
+            endColor = Color.green;
+            t = (healthPercentage - 0.5f) * 2; // Normalize 0.5 to 1 range
+        }
+        else
+        {
+            startColor = Color.red;
+            endColor = Color.yellow;
+            t = healthPercentage * 2; // Normalize 0 to 0.5 range
+        }
 
-        healthBar.color = Color.Lerp(startColor, endColor, 1 - healthPercentage);
+        // Apply interpolated color
+        healthBar.color = Color.Lerp(startColor, endColor, t);
     }
 
     public void SetGameActive(bool active)
