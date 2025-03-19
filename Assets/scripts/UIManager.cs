@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
             SetGameActive(false);
         }
         popupsActive++;
-        Debug.Log("open" + popupsActive);
+        Debug.Log("Popup open" + popupsActive);
     }
 
     public void OnPopupClosed()
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
         {
             SetGameActive(true);
         }
-        Debug.Log("close" + popupsActive);
+        Debug.Log("Popup close" + popupsActive);
     }
 
     // update score display
