@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image crossHair;
     [SerializeField] private OptionsPopup optionsPopup;
     [SerializeField] private SettingPopup settingPopup;
+    [SerializeField] private GameOverPopup gameOverPopup;
 
     private int popupsActive = 0;
 
@@ -27,6 +28,11 @@ public class UIManager : MonoBehaviour
 //            SetGameActive(false);
             optionsPopup.Open();
         }
+    }
+
+    public void ShowGameOverPopup()
+    {
+        gameOverPopup.Open();
     }
 
     private void Awake()

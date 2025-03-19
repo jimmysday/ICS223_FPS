@@ -23,8 +23,9 @@ public class PlayerCharacter : MonoBehaviour
         Debug.Log("Health: " + percentage);
         Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, percentage);
         if (health == 0)
-        {
-            Debug.Break();
+        {   
+            //Debug.Break();
+            Messenger.Broadcast(GameEvent.PLAYER_DEAD);
         }
     }
 
