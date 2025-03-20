@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("starting UI Mgr");
         UpdateHealth(1);
         SetGameActive(true);
     }
@@ -55,7 +56,7 @@ public class UIManager : MonoBehaviour
             SetGameActive(false);
         }
         popupsActive++;
-        Debug.Log("Popup open" + popupsActive);
+        Debug.Log("popups active: " + popupsActive);
     }
 
     public void OnPopupClosed()
@@ -65,7 +66,7 @@ public class UIManager : MonoBehaviour
         {
             SetGameActive(true);
         }
-        Debug.Log("Popup close" + popupsActive);
+        Debug.Log("popoups active: " + popupsActive);
     }
 
     // update score display

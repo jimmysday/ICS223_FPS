@@ -7,7 +7,7 @@ public class BasePopup : MonoBehaviour
        
         if (!IsActive())
         {
-            Debug.Log("base open :" + this.GetType().Name + " (" + this.gameObject.name + ")");
+            Debug.Log(this + " base open :" + this.GetType().Name + " (" + this.gameObject.name + ")");
             this.gameObject.SetActive(true);
             Messenger.Broadcast(GameEvent.POPUP_OPENED);
         }
@@ -18,8 +18,10 @@ public class BasePopup : MonoBehaviour
     }
     public void Close()
     {
+
         if (IsActive())
         {
+            Debug.Log(this + " base close()");
             this.gameObject.SetActive(false);
             Messenger.Broadcast(GameEvent.POPUP_CLOSED);
         }

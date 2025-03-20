@@ -8,9 +8,9 @@ public class ActiveDuringGameplay : MonoBehaviour
         Messenger.AddListener(GameEvent.GAME_INACTIVE, OnGameInActive);
     }
 
-    private void DeDestroy()
+    private void OnDestroy()
     {
-        Messenger.RemoveListener(GameEvent.GAME_INACTIVE, OnGameActive);
+        Messenger.RemoveListener(GameEvent.GAME_ACTIVE, OnGameActive);
         Messenger.RemoveListener(GameEvent.GAME_INACTIVE, OnGameInActive);
     }
 
